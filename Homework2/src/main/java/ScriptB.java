@@ -67,7 +67,9 @@ public class ScriptB {
     public static WebDriver initChromedriver()
     {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver.exe");
-        return new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        return new ChromeDriver(options);
     }
 
     private static String getPageTitle(WebDriver driver)
