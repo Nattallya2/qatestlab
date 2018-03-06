@@ -20,6 +20,16 @@ public class Main {
         WebElement button = driver.findElement(By.name("submitLogin"));
         button.click();
 
+        sleepSecond(1000);
+
+        WebElement icon = driver.findElement(By.id("employee_infos"));
+        icon.click();
+
+        WebElement logout = driver.findElement(By.id("header_logout"));
+        logout.click();
+
+        sleepSecond(1000);
+
         driver.quit();
 
     }
@@ -27,5 +37,14 @@ public class Main {
     public static WebDriver initChromedriver() {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver.exe");
         return new ChromeDriver();
+    }
+
+    private static void sleepSecond(int millisecond)
+    {
+        try {
+            Thread.sleep(millisecond);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
