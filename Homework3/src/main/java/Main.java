@@ -23,6 +23,7 @@ public class Main {
         category.selectCategory();
         category.sortCategory();
         category.checkCategoryExists();
+        driver.quit();
     }
 
     public static EventFiringWebDriver initChromedriver() {
