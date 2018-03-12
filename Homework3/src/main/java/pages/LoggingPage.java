@@ -1,10 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 public class LoggingPage {
-    private WebDriver driver;
+    private EventFiringWebDriver driver;
 
     private By emailInput = By.id("email");
     private By passInput = By.id("passwd");
@@ -13,7 +13,7 @@ public class LoggingPage {
     private String password = "Xcg7299bnSmMuRLp9ITw";
     private String adminurl = "http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/";
 
-    public LoggingPage(WebDriver driver){
+    public LoggingPage(EventFiringWebDriver driver){
         this.driver = driver;
     }
 

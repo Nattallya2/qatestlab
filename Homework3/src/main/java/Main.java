@@ -1,15 +1,14 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import pages.Category;
 import pages.LoggingPage;
 
 import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main (String[] args) {
-        WebDriver driver = initChromedriver();
+        EventFiringWebDriver driver = initChromedriver();
         LoggingPage loggingPage = new LoggingPage(driver);
 
         loggingPage.open();
@@ -17,19 +16,21 @@ public class Main {
         loggingPage.fillPassInput();
         loggingPage.clickLoginBtn();
 
-
         Category category = new Category(driver);
-        category.selectCat();
+        category.selectCategory();
         category.newCatAdd();
         category.isCreated();
-        category.selectCat();
-        category.sortCat();
+        category.selectCategory();
+        category.sortCategory();
+        category.checkCategoryExists();
     }
 
-    public static WebDriver initChromedriver() {
+    public static EventFiringWebDriver initChromedriver() {
         System.setProperty("webdriver.chrome.driver", new File(Main.class.getResource("/chromedriver.exe").getFile()).getPath());
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        return driver;
+        EventFiringWebDriver webDriver = new EventFiringWebDriver(driver);
+        webDriver.register(new EventHandler());
+        return webDriver;
     }
 }
