@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" verbose="1" >
+    <test name="Test_chrome">
+        <parameter name="browser" value="Chrome"></parameter>
+        <classes>
+            <class name="HW4.Base"></class>
+        </classes>
+    </test>
+
+        <test name="Test_FireFox">
+        <parameter name="browser" value="FireFox"></parameter>
+    <classes>
+        <class name="HW4.Base"></class>
+    </classes>
+        </test>
+
+    <test name="Test_IE">
+        <parameter name="browser" value="IE"></parameter>
+        <classes>
+            <class name="HW4.Base"></class>
+        </classes>
+    </test>
+
+</suite>
