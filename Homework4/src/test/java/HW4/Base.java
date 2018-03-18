@@ -51,7 +51,6 @@ public class Base {
         String productQuantity = String.valueOf((int) (100*Math.random()));
         String productPrice = String.format("%.2f",100*Math.random()).replace(".", ",");
 
-
         AddProducts addProducts = new AddProducts(logDriver);
         log("Click the New product button");
         addProducts.clickAddProductBtn();
