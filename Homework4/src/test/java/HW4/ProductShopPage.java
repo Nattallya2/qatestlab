@@ -19,7 +19,7 @@ public class ProductShopPage {
 
     public String getProductPrice(){
         String price = logDriver.findElement(currentPrice).getAttribute("textContent").toString();
-        price = price.replace("₴", "").replace("\u00a0","").trim();
+        price = price.replace("₴", "").replace("\u00a0","").replace(" ₴", "").trim();
         return price;
     }
 
