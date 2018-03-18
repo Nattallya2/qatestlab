@@ -1,6 +1,7 @@
 package HW4;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,7 +36,8 @@ public class AddProducts {
     }
 
     public void fillProductPriceTab(String productPrice){
-        logDriver.findElement(productPriceTab).clear();
+        logDriver.findElement(productPriceTab).sendKeys(Keys.CONTROL,"a");
+        logDriver.findElement(productPriceTab).sendKeys(Keys.CONTROL,"x");
         logDriver.findElement(productPriceTab).sendKeys(productPrice);
     }
 
