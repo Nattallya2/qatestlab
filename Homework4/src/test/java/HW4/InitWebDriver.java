@@ -31,12 +31,12 @@ public class InitWebDriver {
     public static WebDriver initIEDriver(){
         System.setProperty("webdriver.ie.driver", new File(InitWebDriver.class.getResource("/IEDriverServer.exe").getFile()).getPath());
 
-        InternetExplorerOptions options = new InternetExplorerOptions().requireWindowFocus().destructivelyEnsureCleanSession();
+        InternetExplorerOptions options = new InternetExplorerOptions().destructivelyEnsureCleanSession();
         options.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
         options.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
         options.setCapability(InternetExplorerDriver.NATIVE_EVENTS, false);
 
-        WebDriver ieDriver = new InternetExplorerDriver();
+        WebDriver ieDriver = new InternetExplorerDriver(options);
         ieDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         ieDriver.manage().window().maximize();
         return ieDriver;
