@@ -2,12 +2,11 @@ package HW5;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.Random;
 
 public class CheckoutPage {
     private WebDriver driver;
+    private RandomCheckoutData randomCheckoutData;
+
     private By nameField = By.xpath("//*[@id=\"customer-form\"]/section/div[2]/div[1]/input");
     private By surnameField = By.xpath("//*[@id=\"customer-form\"]/section/div[3]/div[1]/input");
     private By emailField = By.xpath("//*[@id=\"customer-form\"]/section/div[4]/div[1]/input");
@@ -21,41 +20,21 @@ public class CheckoutPage {
     private By termsApproveCheckbox = By.xpath("//*[@id=\"conditions_to_approve[terms-and-conditions]\"]");
     private By submitOrderBtn = By.xpath("//*[@id=\"payment-confirmation\"]/div[1]/button");
 
-    public CheckoutPage(WebDriver driver){
+    public CheckoutPage(WebDriver driver, RandomCheckoutData randomCheckoutData){
         this.driver = driver;
+        this.randomCheckoutData = randomCheckoutData;
     }
-
-
-    public static String generateRandomString (int length){
-        Random random = new Random();
-
-        char[] values = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-                'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-                'u', 'v', 'w', 'x', 'y', 'z'};
-
-        String out = "";
-
-        for (int i = 0; i < length; i++) {
-            int idx = random.nextInt(values.length);
-            out += values[idx];
-        }
-        return out;
-    }
-
 
     public void inputName(){
-        String name = "Name" + generateRandomString(5);
-        driver.findElement(nameField).sendKeys(name);
+        driver.findElement(nameField).sendKeys(randomCheckoutData.getName());
     }
 
     public void inputSurname(){
-        String surname = "Surname"+ generateRandomString(5);
-        driver.findElement(surnameField).sendKeys(surname);
+        driver.findElement(surnameField).sendKeys(randomCheckoutData.getSurname());
     }
 
     public void inputEmail(){
-        String email = "email" + generateRandomString(5) + "@test.com";
-        driver.findElement(emailField).sendKeys(email);
+        driver.findElement(emailField).sendKeys(randomCheckoutData.getEmail());
     }
 
     public void clickContinueBtn1(){
@@ -63,18 +42,15 @@ public class CheckoutPage {
     }
 
     public void inputAddress(){
-        String address = "Street " + String.valueOf((System.currentTimeMillis()));
-        driver.findElement(addressField).sendKeys(address);
+        driver.findElement(addressField).sendKeys(randomCheckoutData.getAddress());
     }
 
     public void inputPostcode(){
-        String postcode = String.valueOf((long) (10000 + (int)(Math.random()*89999)));
-        driver.findElement(postCodeField).sendKeys(postcode);
+        driver.findElement(postCodeField).sendKeys(randomCheckoutData.getPostcode());
     }
 
     public void inputCity(){
-        String city = "City" + String.valueOf((System.currentTimeMillis()));
-        driver.findElement(deliveryCityField).sendKeys(city);
+        driver.findElement(deliveryCityField).sendKeys(randomCheckoutData.getCity());
     }
 
     public void clickContinueBtn2(){
@@ -96,8 +72,4 @@ public class CheckoutPage {
     public void clickOrderBtn(){
         driver.findElement(submitOrderBtn).click();
     }
-
-
-
-
 }
